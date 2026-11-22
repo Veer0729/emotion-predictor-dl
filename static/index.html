@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mood Reader – Emotion detection for text</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body data-emotion="neutral">
+  <div class="aura" aria-hidden="true"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span></div>
+
+  <main class="shell">
+    <header class="intro">
+      <h1>How does this sentence feel?</h1>
+      <p>Write anything. A BiLSTM model reads it and tells you whether it sounds sad, joyful, loving, angry, fearful or surprised.</p>
+    </header>
+
+    <section class="panel" id="inputPanel">
+      <label for="textInput" class="sr-only">Your sentence</label>
+      <textarea id="textInput" maxlength="2000" rows="4" placeholder="I feel so happy and excited about today…"></textarea>
+      <div class="bar">
+        <span class="count"><span id="charCount">0</span> / 2000</span>
+        <button id="analyzeBtn" type="button" disabled>
+          <span class="btn-label">Analyze emotion</span>
+          <span class="spinner" aria-hidden="true"></span>
+        </button>
+      </div>
+    </section>
+
+    <p class="error" id="errorMsg" role="alert" hidden></p>
+
+    <section class="result" id="result" hidden aria-live="polite">
+      <div class="verdict">
+        <div class="emoji" id="emoji">😄</div>
+        <div class="verdict-text">
+          <h2 id="emotionName">Joy</h2>
+          <p id="quote"></p>
+        </div>
+        <div class="ring">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <circle class="track" cx="60" cy="60" r="52" />
+            <circle class="fill" id="ringFill" cx="60" cy="60" r="52" />
+          </svg>
+          <div class="ring-num"><span id="confNum">0</span><small>%</small></div>
+        </div>
+      </div>
+      <ul class="bars" id="bars"></ul>
+    </section>
+  </main>
+
+  <footer class="foot">Runs on your own model. Nothing is stored.</footer>
+  <script src="/static/script.js"></script>
+</body>
+</html>
