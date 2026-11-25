@@ -1,5 +1,5 @@
-from fastapi import FastAPI, HTTPException
-import re
+from fastapi import FastAPI, HTTPException # HTTPException: let us handle exceptions
+import re # used for text cleaning (removing punctuation, spaces, etc.).
 from pydantic import BaseModel, Field
 from keras.models import load_model
 import pickle
@@ -127,6 +127,7 @@ def health_check():
 
 @app.post("/predict", response_model = PredicitonResponse)
 def predict(text_input: TextInput):
+    
     # 1. cleans the input sentences
     LsTM_model = dl_model.get("BILSTM")
     tokenizer_model = dl_model.get("tokenizer") 
